@@ -1,12 +1,23 @@
+mod models {
+    mod game;
+    mod player;
+    mod moves;
+    mod rooms;
+    //mod positions;
+}
+
 mod systems {
     mod actions;
 }
 
-mod models {
-    mod moves;
-    mod position;
+mod constants {
+
+}
+
+mod utils {
 }
 
 mod tests {
-    mod test_world;
+    mod integration;
+    mod units;
 }

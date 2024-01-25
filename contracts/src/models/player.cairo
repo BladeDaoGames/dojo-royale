@@ -3,25 +3,23 @@ use starknet::ContractAddress;
 #[derive(Model, Drop, Serde)]
 struct Player {
     #[key]
-    game_id: u32,
-
-    #[key]
     address: ContractAddress,
-    
-    color: Color
+
+    game_id: u128,
+    playerIndex: u8,
+
+    readyStatus: bool,
+    pauseVote: bool,
+
+    char: CharacterType,
+    health: u16,
+    playerAlive: bool,
+    positionIndex: u32,
+    lastMoveTime: u256
 }
 
 #[derive(Serde, Drop, Copy, PartialEq, Introspect)]
-enum Color {
-    Blue,
-    Yellow,
-    Green,
-    Red,
-    None,
-}
-
-#[derive(Serde, Drop, Copy, PartialEq, Introspect)]
-enum PlayerType {
+enum CharacterType {
     Bomber,
     Builder,
     Caster,

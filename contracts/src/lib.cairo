@@ -1,8 +1,8 @@
 mod models {
-    mod game;
     mod player;
     mod moves;
     mod rooms;
+    mod obstacle;
     //mod positions;
 }
 

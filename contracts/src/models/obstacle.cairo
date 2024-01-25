@@ -1,24 +1,17 @@
 use starknet::ContractAddress;
 
 #[derive(Model, Drop, Serde)]
-struct Player {
+struct Obstacle {
     #[key]
-    game_id: u32,
-
+    game_id: u128,
     #[key]
-    address: ContractAddress,
+    item_id: u32,
     
-    color: Color
+    object_type: ObjectType,
+    
+    positionIndex: u32,
 }
 
-#[derive(Serde, Drop, Copy, PartialEq, Introspect)]
-enum Color {
-    Blue,
-    Yellow,
-    Green,
-    Red,
-    None,
-}
 
 #[derive(Serde, Drop, Copy, PartialEq, Introspect)]
 enum ObjectType {

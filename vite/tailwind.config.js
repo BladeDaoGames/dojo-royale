@@ -11,7 +11,6 @@ export default {
       background1: '#34222E',
       background2: '#76362C',
       alertred1: '#C33030',
-
       prime1: '#FF6F2F',
       prime2: '#DBB874',
       prime3: '#366ED8',
@@ -29,12 +28,8 @@ export default {
       gameblue: '#064ACB',
       greyness: '#7C7474',
       purpgrey: '#79789C',
-
-
-
-
-
     },
+    
     extend: {
       animation: {
         marquee: 'marquee 55s linear infinite',

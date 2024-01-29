@@ -3,7 +3,7 @@ mod models {
     mod moves;
     mod rooms;
     mod obstacle;
-    //mod positions;
+    mod position;
 }
 
 mod systems {

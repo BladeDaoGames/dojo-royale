@@ -10,6 +10,43 @@ export async function setupWorld(provider: DojoProvider) {
     function actions() {
         const contract_name = "actions";
 
+        const spawn = async ({ account }: { account: Account }) => {
+            try {
+                return await provider.execute(
+                    account,
+                    contract_name,
+                    "spawn",
+                    []
+                );
+            } catch (error) {
+                console.error("Error executing spawn:", error);
+                throw error;
+            }
+        };
+
+        const move = async ({
+            account,
+            direction,
+        }: {
+            account: Account;
+            direction: Direction;
+        }) => {
+            try {
+                return await provider.execute(account, contract_name, "move", [
+                    direction,
+                ]);
+            } catch (error) {
+                console.error("Error executing move:", error);
+                throw error;
+            }
+        };
+
+        return { move, spawn };
+    }
+
+    function lobby_actions() {
+        const contract_name = "lobby_actions";
+
         const createGame = async ({ 
             account, 
             // board_width, 
@@ -60,40 +97,11 @@ export async function setupWorld(provider: DojoProvider) {
             }
         };
 
-        const spawn = async ({ account }: { account: Account }) => {
-            try {
-                return await provider.execute(
-                    account,
-                    contract_name,
-                    "spawn",
-                    []
-                );
-            } catch (error) {
-                console.error("Error executing spawn:", error);
-                throw error;
-            }
-        };
-
-        const move = async ({
-            account,
-            direction,
-        }: {
-            account: Account;
-            direction: Direction;
-        }) => {
-            try {
-                return await provider.execute(account, contract_name, "move", [
-                    direction,
-                ]);
-            } catch (error) {
-                console.error("Error executing move:", error);
-                throw error;
-            }
-        };
-
-        return { createGame, joinGame, move, spawn };
+        return { createGame, joinGame };
     }
+
     return {
         actions: actions(),
+        lobby_actions: lobby_actions(),
     };
 }

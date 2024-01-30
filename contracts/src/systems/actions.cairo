@@ -4,11 +4,8 @@ use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 // define the interface
 #[starknet::interface]
 trait IActions<TContractState> {
-    fn createGame(self: @TContractState)->u128;
-    fn joinGame(self: @TContractState, game_id: u128);
     fn spawn(self: @TContractState);
     fn move(self: @TContractState, direction: dojo_royale::models::moves::Direction);
-
 }
 
 #[dojo::contract]
@@ -21,9 +18,7 @@ mod actions {
     use traits::{Into, TryInto};
     use dojo_royale::models::{ 
         position::{Position, Vec2}, 
-        moves::{Moves, Direction}, 
-        rooms::{Room, GameStatus},
-        player::{Player, CharacterType}
+        moves::{Moves, Direction}
         };
     
     // declaring custom event struct
@@ -83,73 +78,6 @@ mod actions {
             );
         }
 
-        // ContractState is defined by system decorator expansion
-        fn createGame(self: @ContractState) -> u128{
-            // // Access the world dispatcher for reading.
-            let world = self.world_dispatcher.read();
-
-            // // Get the address of the current caller, possibly the player's address.
-            let caller = get_caller_address();
-
-            let game_id: u128 = world.uuid().into(); //uuid is u32
-
-            let new_room = Room {
-                game_id,
-                board_width: 10,
-                board_height: 10,
-                size: 10*10,
-                gameCreator: caller,
-
-                minStake:0,
-                totalStaked: 0,
-
-                maxPlayers:4,
-                playersCount: 0,
-                itemCount: 0,
-
-                gamestatus: GameStatus::GameCreated,
-                gameWinner: starknet::contract_address_const::<0x0>(),
-            
-            };
-
-            // Update the world state with the new room data.
-            set!(
-                world,
-                (
-                    new_room
-                )
-            );
-
-            // Set player in room
-            let player1 = Player {
-                address: caller,
-                game_id,
-                playerIndex: 0,
-
-                readyStatus: false,
-                pauseVote: false,
-
-                char: CharacterType::None,
-                health: 100,
-                playerAlive: true,
-                positionIndex: 0,
-                lastMoveTime: 0,
-            };
-
-            set!(
-                world,
-                (
-                    player1
-                )
-            );
-
-            game_id
-        }
-
-        fn joinGame(self: @ContractState, game_id: u128){
-            
-        }
-
         // Implementation of the move function for the ContractState struct.
         fn move(self: @ContractState, direction: Direction) {
             // Access the world dispatcher for reading.
@@ -176,7 +104,5 @@ mod actions {
             // Emit an event to the world to notify about the player's move.
             emit!(world, Moved { player, direction });
         }
-
-
     }
 }

@@ -8,8 +8,12 @@ import {
     getEvents,
     setComponentsFromEvents,
 } from "@dojoengine/utils";
-import { ContractComponents } from "./generated/contractComponents";
 import type { IWorld } from "./generated/generated";
+import { defineContractComponents } from "./generated/contractComponents";
+
+type ContractComponents = Awaited<
+    ReturnType<typeof defineContractComponents>
+>;
 
 export type SystemCalls = ReturnType<typeof createSystemCalls>;
 
@@ -23,7 +27,7 @@ export function createSystemCalls(
         ) => {
 
         try {
-            const { transaction_hash } = await client.actions.createGame({
+            const { transaction_hash } = await client.lobby_actions.createGame({
                 account,
                 // board_width: 10,
                 // board_height: 10,

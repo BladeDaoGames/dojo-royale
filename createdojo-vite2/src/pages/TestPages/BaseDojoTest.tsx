@@ -130,7 +130,7 @@ export const BaseDojoTest = () => {
                 <div>
                     Room:{" "}
                     {player?.game_id
-                        ? `${player.game_id}`
+                        ? `${player.game_id} player address ${bigintToHex(player?.address)}`
                         : "No Room Detected"}
                 </div>
             </div>

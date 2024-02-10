@@ -100,8 +100,35 @@ export async function setupWorld(provider: DojoProvider) {
         return { createGame, joinGame };
     }
 
+    function game_actions() {
+        const contract_name = "game_actions";
+
+        const startGame = async ({
+            account,
+            game_id,
+        }: {
+            account: Account;
+            game_id: bigint;
+        }) => {
+            try {
+                return await provider.execute(
+                    account,
+                    contract_name,
+                    "startGame",
+                    [game_id]
+                );
+            } catch (error) {
+                console.error("Error executing spawn:", error);
+                throw error;
+            }
+        }
+
+        return { startGame };
+    }
+
     return {
         actions: actions(),
         lobby_actions: lobby_actions(),
+        game_actions: game_actions()
     };
 }

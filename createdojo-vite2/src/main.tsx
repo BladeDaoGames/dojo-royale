@@ -5,6 +5,7 @@ import "./index.css";
 import { setup } from "./dojo/generated/setup.ts";
 import { DojoProvider } from "./dojo/DojoContext.tsx";
 import { dojoConfig } from "../dojoConfig.ts";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 async function init() {
     const rootElement = document.getElementById("root");
@@ -13,10 +14,14 @@ async function init() {
 
     const setupResult = await setup(dojoConfig());
 
+    const queryClient = new QueryClient();
+
     root.render(
         <React.StrictMode>
             <DojoProvider value={setupResult}>
-                <App />
+                <QueryClientProvider client={queryClient}>
+                    <App />
+                </QueryClientProvider>
             </DojoProvider>
         </React.StrictMode>
     );

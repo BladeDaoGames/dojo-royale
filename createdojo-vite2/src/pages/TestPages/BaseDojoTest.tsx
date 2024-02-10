@@ -1,7 +1,6 @@
 import { useComponentValue, useEntityQuery } from "@dojoengine/react";
 import { Entity, Has, getComponentValue, Component, QueryFragment } from "@dojoengine/recs";
 import { useEffect, useState } from "react";
-import "@/App.css";
 import { Direction } from "@/utils";
 import { getEntityIdFromKeys } from "@dojoengine/utils";
 import { useDojo } from "@/dojo/useDojo";
@@ -27,28 +26,24 @@ export const BaseDojoTest = () => {
         BigInt(account?.account.address),
     ]) as Entity;
 
-    
-    console.log("current account: ", account?.account)
-    console.log("current account address: ", account?.account.address)
-    console.log("current account signer: ", account?.account.signer)
-
     const entityId = entityIdfromKeys;
 
     // get current component values
     const position = useComponentValue(Position, entityId);
     const player = useComponentValue(Player, entityId);
-    console.log(player)
-    
-    console.log("Entity Id from Keys", entityIdfromKeys)
 
     const playerIds = useEntityQuery([Has(Player)]).map((entityId) => {
         return bigintToHex(getComponentValue(Player, entityId).address)
     }) ?? []
 
-    console.log("Player Ids")
-    console.log(playerIds)
-
     const moves = useComponentValue(Moves, entityId);
+    const moveIds = useEntityQuery([Has(Moves)]).map((entityId) => {
+        return getComponentValue(Moves, entityId)
+    }) ?? []
+    console.log("Move Ids")
+    console.log(moveIds)
+    console.log(Moves.values)
+
 
     const handleRestoreBurners = async () => {
         try {

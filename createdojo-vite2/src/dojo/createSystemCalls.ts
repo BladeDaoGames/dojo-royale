@@ -142,9 +142,31 @@ export function createSystemCalls(
             Moves.removeOverride(movesId);
         }
     };
+
+    const startGame = async (account: Account, game_id: bigint) => {
+        try {
+            const { transaction_hash } = await client.game_actions.startGame({
+                account,
+                game_id
+            });
+
+            setComponentsFromEvents(
+                contractComponents,
+                getEvents(
+                    await account.waitForTransaction(transaction_hash, {
+                        retryInterval: 100,
+                    })
+                )
+            );
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     return {
         spawn,
         move,
-        createGame
+        createGame,
+        startGame
     };
 }

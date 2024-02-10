@@ -6,6 +6,7 @@ import { getEntityIdFromKeys } from "@dojoengine/utils";
 import { Card } from 'flowbite-react';
 import { bigintToHex, addressShortener } from "@/utils";
 import { create } from 'domain';
+import { Type as RecsType } from "@dojoengine/recs";
 
 export const MockLobby = () => {
     const {
@@ -18,6 +19,7 @@ export const MockLobby = () => {
     
     const rooms = useEntityQuery([Has(Room)]).map((entityId) => {
         const r = getComponentValue(Room, entityId)
+        console.log(r)
         return (
             <Card key={`${String(r?.game_id)}`} href="#" 
                 className="max-w-sm text-left my-2 mx-1">
@@ -26,10 +28,10 @@ export const MockLobby = () => {
                 </h5>
                 <div>Size: {Number(r?.board_width)} x {Number(r?.board_height)}</div>
                 <div>Creator: {addressShortener(bigintToHex(r?.gameCreator ?? 0n))}</div>
-                <div>Minimum Stake: {bigintToHex(r?.minStake ?? 0n)}</div>
+                <div>Minimum Stake: {Number(r?.minStake ?? 0n)}</div>
                 <div>Max Players: {r?.maxPlayers}</div>
                 <div>Current Player Count: {r?.playersCount}</div>
-                <div>Game Status: {r?.gamestatus}</div>
+                <div>Game Status: {Number(r?.gamestatus) }</div>
                 
             </Card>
         )
@@ -62,10 +64,10 @@ export const MockLobby = () => {
     }
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto flex justify-center">
 
 
-            <div className="mx-auto w-[80vw]">
+            <div className="w-[80vw]">
 
                 <div className="flex flex-row
                 px-2 my-1

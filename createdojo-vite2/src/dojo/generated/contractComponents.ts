@@ -3,71 +3,73 @@
 import { defineComponent, Type as RecsType, World } from "@dojoengine/recs";
 
 export function defineContractComponents(world: World) {
-	return {
-		Moves: (() => {
-			return defineComponent(
-			world,
-			{ player: RecsType.BigInt, remaining: RecsType.Number, last_direction: RecsType.Number },
-			{
-				metadata: {
-				name: "Moves",
-				types: ["contractaddress","u8","enum"],
-				customTypes: ["Direction"],
-				},
-			}
-			);
-		})(),
-		Obstacle: (() => {
-			return defineComponent(
-			world,
-			{ game_id: RecsType.BigInt, item_id: RecsType.Number, object_type: RecsType.Number, positionIndex: RecsType.Number },
-			{
-				metadata: {
-				name: "Obstacle",
-				types: ["u128","u32","enum","u32"],
-				customTypes: ["ObjectType"],
-				},
-			}
-			);
-		})(),
-		Player: (() => {
-			return defineComponent(
-			world,
-			{ address: RecsType.BigInt, game_id: RecsType.BigInt, playerIndex: RecsType.Number, readyStatus: RecsType.Boolean, pauseVote: RecsType.Boolean, char: RecsType.Number, health: RecsType.Number, playerAlive: RecsType.Boolean, positionIndex: RecsType.Number, lastMoveTime: RecsType.BigInt },
-			{
-				metadata: {
-				name: "Player",
-				types: ["contractaddress","u128","u8","bool","bool","enum","u16","bool","u32","u256"],
-				customTypes: ["CharacterType"],
-				},
-			}
-			);
-		})(),
-		Position: (() => {
-			return defineComponent(
-			world,
-			{ player: RecsType.BigInt, vec: { x: RecsType.Number, y: RecsType.Number } },
-			{
-				metadata: {
-				name: "Position",
-				types: ["contractaddress","u32","u32"],
-				customTypes: ["Vec2"],
-				},
-			}
-			);
-		})(),
-		Room: (() => {
-			return defineComponent(
-			world,
-			{ game_id: RecsType.BigInt, board_width: RecsType.Number, board_height: RecsType.Number, size: RecsType.Number, gameCreator: RecsType.BigInt, minStake: RecsType.BigInt, totalStaked: RecsType.BigInt, maxPlayers: RecsType.Number, playersCount: RecsType.Number, itemCount: RecsType.Number, gamestatus: RecsType.Number, gameWinner: RecsType.BigInt },
-			{
-				metadata: {
-				name: "Room",
-				types: ["u128","u8","u8","u32","contractaddress","u256","u256","u8","u8","u8","enum","contractaddress"],
-				customTypes: ["GameStatus"],
-				},
-			}
-			);
-		})(),
-	};
+  return {
+	  Moves: (() => {
+	    return defineComponent(
+	      world,
+	      { player: RecsType.BigInt, remaining: RecsType.Number, last_direction: RecsType.String },
+	      {
+	        metadata: {
+	          name: "Moves",
+	          types: ["contractaddress","u8","enum"],
+	          customTypes: ["Direction"],
+	        },
+	      }
+	    );
+	  })(),
+
+	  Obstacle: (() => {
+	    return defineComponent(
+	      world,
+	      { game_id: RecsType.BigInt, item_id: RecsType.Number, object_type: RecsType.Number, positionIndex: RecsType.Number },
+	      {
+	        metadata: {
+	          name: "Obstacle",
+	          types: ["u128","u32","enum","u32"],
+	          customTypes: ["ObjectType"],
+	        },
+			indexed: true
+	      }
+	    );
+	  })(),
+	  Player: (() => {
+	    return defineComponent(
+	      world,
+	      { address: RecsType.BigInt, game_id: RecsType.BigInt, playerIndex: RecsType.Number, readyStatus: RecsType.Boolean, pauseVote: RecsType.Boolean, char: RecsType.Number, health: RecsType.Number, playerAlive: RecsType.Boolean, positionIndex: RecsType.Number, lastMoveTime: RecsType.BigInt },
+	      {
+	        metadata: {
+	          name: "Player",
+	          types: ["contractaddress","u128","u8","bool","bool","enum","u16","bool","u32","u256"],
+	          customTypes: ["CharacterType"],
+	        },
+	      }
+	    );
+	  })(),
+	  Position: (() => {
+	    return defineComponent(
+	      world,
+	      { player: RecsType.BigInt, vec: { x: RecsType.Number, y: RecsType.Number } },
+	      {
+	        metadata: {
+	          name: "Position",
+	          types: ["contractaddress","u32","u32"],
+	          customTypes: ["Vec2"],
+	        },
+	      }
+	    );
+	  })(),
+	  Room: (() => {
+	    return defineComponent(
+	      world,
+	      { game_id: RecsType.BigInt, board_width: RecsType.Number, board_height: RecsType.Number, size: RecsType.Number, gameCreator: RecsType.BigInt, minStake: RecsType.BigInt, totalStaked: RecsType.BigInt, maxPlayers: RecsType.Number, playersCount: RecsType.Number, itemCount: RecsType.Number, gamestatus: RecsType.Number, gameWinner: RecsType.BigInt },
+	      {
+	        metadata: {
+	          name: "Room",
+	          types: ["u128","u8","u8","u32","contractaddress","u256","u256","u8","u8","u8","enum","contractaddress"],
+	          customTypes: ["GameStatus"],
+	        },
+	      }
+	    );
+	  })(),
+  };
 }

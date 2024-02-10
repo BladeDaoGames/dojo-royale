@@ -2,7 +2,9 @@ import React from 'react';
 import { FaEthereum } from "react-icons/fa";
 import { PiUserFill } from "react-icons/pi";
 
-export const RoomCard = () => {
+export const RoomCard = ({
+    roomId, mapName, creatorName, stakeValue, playerCount, maxPlayers, roomstatus, 
+    }) => {
     return (
         <div className="w-full h-28 flex items-center
                 bg-white/80 rounded-lg border-2 border-gray-600
@@ -24,7 +26,7 @@ export const RoomCard = () => {
                     <FaEthereum className=""/>
                     <span className="flex-grow
                     text-center
-                    ">500</span>
+                    ">{stakeValue}</span>
                     </div>
 
                     <div className="
@@ -35,7 +37,7 @@ export const RoomCard = () => {
                     <PiUserFill className="h-full"/>
                     <span className="flex-grow
                     text-center
-                    ">5/6</span>
+                    ">{playerCount}/{maxPlayers}</span>
                     </div>
 
                 </div>
@@ -49,19 +51,21 @@ export const RoomCard = () => {
                     <div className="h-1/2 border border-transparent border-b-gray-600
                     flex items-center justify-between
                     ">
-                    <span>No. 001</span>
-                    <span>Ninja Village (12x12)</span>
+                    <span>No. {roomId}</span>
+                    <span>{mapName}</span>
                     </div>
 
 
                     <div className="flex-grow flex items-center justify-between">
-                    <span>Player Name</span>
-                    <button className="
-                    px-2 py-1 bg-regular-orange
+                    <span>{creatorName}</span>
+                    <button className={`px-2 py-1 w-32
                     border border-gray-600 rounded-lg
-                    w-32
-                    ">
-                        Playing
+                    text-black
+                    ${roomstatus=="Join"?"bg-regular-orange"
+                    : "bg-dark-gray-200"
+                    }
+                    `}>
+                        {roomstatus}
                     </button>
                     </div>
 

@@ -30,7 +30,7 @@ const WaitingRoom = () => {
 
         <div className="my-2 mx-4
         flex justify-start gap-4
-        p-2 px-4 border border-red-500
+        p-2 px-4
         h-[80vh]
         ">
 
@@ -51,14 +51,29 @@ const WaitingRoom = () => {
                   </div>
                 </div>
 
-                <div className="h-full border border-green-500
-                p-1
+                <div className="h-full p-1
                 grid grid-cols-2 gap-4
                 overflow-y-auto
                 ">
                   {/* Render the list of rooms here */}
-                  <RoomCard />
-                  <RoomCard />
+                  <RoomCard 
+                    roomId={'001'} 
+                    creatorName={'Musashi'} 
+                    mapName={`Ninja Village (12x12)`} 
+                    stakeValue={'500'}
+                    playerCount={2}
+                    maxPlayers={4}
+                    roomstatus={"Playing"}
+                    />
+                  <RoomCard 
+                    roomId={'002'} 
+                    creatorName={'Kakashi'} 
+                    mapName={`Ninja Village (12x12)`} 
+                    stakeValue={'888'}
+                    playerCount={5}
+                    maxPlayers={6}
+                    roomstatus={"Join"}
+                    />
 
                 </div>
 

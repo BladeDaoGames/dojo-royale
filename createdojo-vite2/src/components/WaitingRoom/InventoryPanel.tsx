@@ -15,17 +15,18 @@ export const InventoryPanel = () => {
 
             <div className="
             border-2 border-gray-600 rounded-2xl
-            w-40 h-40 mb-8
+            w-[15vh] h-[15vh] mb-8
             hover:border-white
             " />
 
             <p className="text-2xl my-4 w-full
-            px-7 font-medium text-gray-700
+            mx-2 px-7 font-medium text-gray-700
             ">
                 INVENTORY
             </p>
             
-            <div className="grid grid-cols-4 gap-2
+            <div className="grid grid-cols-4 gap-0
+            justify-items-center justify-center items-center
             w-96 h-96
             ">
 
@@ -35,7 +36,7 @@ export const InventoryPanel = () => {
                     Array.from({length: 16}).map((_, index) => (
                         <div key={index} className="
                         border-2 border-gray-600 rounded-2xl
-                        w-20 h-20
+                        w-[8vh] h-[8vh]
                         hover:border-white
                         hover:bg-white/50
                         " />

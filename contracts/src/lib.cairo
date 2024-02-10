@@ -9,6 +9,7 @@ mod models {
 mod systems {
     mod actions;
     mod lobby_actions;
+    mod game_actions;
 }
 
 mod constants {

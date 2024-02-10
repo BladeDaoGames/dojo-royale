@@ -10,11 +10,11 @@ struct Moves {
 
 #[derive(Serde, Copy, Drop, Introspect)]
 enum Direction {
-    None,
-    Left,
-    Right,
-    Up,
-    Down,
+    None:(),
+    Left:(),
+    Right:(),
+    Up:(),
+    Down:(),
 }
 
 impl DirectionIntoFelt252 of Into<Direction, felt252> {

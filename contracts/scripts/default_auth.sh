@@ -10,12 +10,16 @@ export ACTIONS_ADDRESS=$(cat ./target/dev/manifest.json | jq -r '.contracts[] | 
 
 export LOBBY_ACTIONS_ADDRESS=$(cat ./target/dev/manifest.json | jq -r '.contracts[] | select(.name == "dojo_royale::systems::lobby_actions::lobby_actions" ).address')
 
+export GAME_ACTIONS_ADDRESS=$(cat ./target/dev/manifest.json | jq -r '.contracts[] | select(.name == "dojo_royale::systems::game_actions::game_actions" ).address')
+
 echo "---------------------------------------------------------------------------"
 echo world : $WORLD_ADDRESS 
 echo " "
 echo actions : $ACTIONS_ADDRESS 
 echo " "
 echo lobby_actions : $LOBBY_ACTIONS_ADDRESS 
+echo " "
+echo game_actions : $GAME_ACTIONS_ADDRESS 
 echo " "
 echo "---------------------------------------------------------------------------"
 
@@ -32,6 +36,12 @@ COMPONENTS=("Position" "Moves" "Player" "Room" "Obstacle")
 
 for component in ${COMPONENTS[@]}; do
     sozo auth writer $component $LOBBY_ACTIONS_ADDRESS --world $WORLD_ADDRESS --rpc-url $RPC_URL
+    # time out for 1 second to avoid rate limiting
+    sleep 1
+done
+
+for component in ${COMPONENTS[@]}; do
+    sozo auth writer $component $GAME_ACTIONS_ADDRESS --world $WORLD_ADDRESS --rpc-url $RPC_URL
     # time out for 1 second to avoid rate limiting
     sleep 1
 done

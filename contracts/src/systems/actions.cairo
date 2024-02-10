@@ -87,7 +87,7 @@ mod actions {
             let player = get_caller_address();
 
             // Retrieve the player's current position and moves data from the world.
-            let (mut position, mut moves) = get!(world, player, (Position, Moves));
+            let (mut position, mut moves):(Position, Moves) = get!(world, player, (Position, Moves));
 
             // Deduct one from the player's remaining moves.
             moves.remaining -= 1;

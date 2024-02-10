@@ -1,4 +1,7 @@
 use starknet::ContractAddress;
+use dojo::database::introspect::{
+    Enum, Member, Ty, Struct, Introspect, serialize_member, serialize_member_type
+};
 use array::{ArrayTrait, SpanTrait};
 use traits::Into;
 
@@ -31,6 +34,18 @@ enum GameStatus {
     GameAbandoned
 }
 
+impl GameStatusIntoU8 of Into<GameStatus, u8> {
+    fn into(self: GameStatus) -> u8 {
+        match self {
+            GameStatus::GameCreated => 0,
+            GameStatus::GameOnGoing => 1,
+            GameStatus::GamePaused => 2,
+            GameStatus::GameEnded => 3,
+            GameStatus::GameAbandoned => 4
+        }
+    }
+}
+
 trait RoomTrait {
     fn new(game_id: u128, board_width: u8, board_height: u8, gameCreator: ContractAddress, maxPlayers:u8, minStake: u256) -> Room;
     fn indexToXY(self: Room, index: u8) -> (u8, u8);
@@ -50,7 +65,7 @@ impl RoomImpl of RoomTrait {
             maxPlayers: maxPlayers,
             playersCount: 0,
             itemCount: 0,
-            gamestatus: GameStatus::GameCreated,
+            gamestatus: GameStatus::GameCreated.into(),
             gameWinner: starknet::contract_address_const::<0x0>(),
 
         }
@@ -66,6 +81,37 @@ impl RoomImpl of RoomTrait {
         x + y * self.board_width
     }
 }
+
+
+// impl GameStatusIntrospectionImpl of Introspect<GameStatus> {
+//     #[inline(always)]
+//     fn size() -> usize {
+//         1
+//     }
+
+//     #[inline(always)]
+//     fn layout(ref layout: Array<u8>) {
+//         layout.append(8);
+//     }
+
+//     #[inline(always)]
+//     fn ty() -> Ty {
+//         Ty::Enum(
+//             Enum {
+//                 name: 'GameStatus',
+//                 attrs: array![].span(),
+//                 children: array![
+//                     ('GameCreated', serialize_member_type(@Ty::Tuple(array![].span()))),
+//                     ('GameOnGoing', serialize_member_type(@Ty::Tuple(array![].span()))),
+//                     ('GamePaused', serialize_member_type(@Ty::Tuple(array![].span()))),
+//                     ('GameEnded', serialize_member_type(@Ty::Tuple(array![].span()))),
+//                     ('GameAbandoned', serialize_member_type(@Ty::Tuple(array![].span()))),
+//                 ]
+//                     .span()
+//             }
+//         )
+//     }
+// }
 
 // #[cfg(test)]
 // mod tests {

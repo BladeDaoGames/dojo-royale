@@ -14,21 +14,30 @@ const TabInterface = ({ tabs, initialActiveTab }: TabInterfaceProps) => {
   const [activeTab, setActiveTab] = useState(initialActiveTab || tabs[0].label);
 
   return (
-    <ul className="mt-2 flex text-sm font-medium text-center text-beige-100 dark:border-gray-700 dark:text-gray-400">
+    <ul className="mt-2 text-sm text-center text-beige-100
+    h-full mb-2
+      dark:border-gray-700 dark:text-gray-400
+      grid grid-cols-3 gap-0
+      ">
       {tabs.map((tab) => (
-        <li key={tab.label}>
+        <li key={tab.label}
+        className=""
+        >
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               if (!tab.disabled) setActiveTab(tab.label);
             }}
-            className={`inline-block px-6 rounded-t-lg text-2xl font-bold ${
+            className={`inline-block px-6 border-2 border-gray-500 rounded-t-md text-2xl font-medium w-full
+            ${
               tab.disabled
                 ? "text-white cursor-not-allowed dark:text-beige-100"
                 : activeTab === tab.label
-                ? "text-white bg-beige-100"
-                : "hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-black dark:hover:text-gray-300 bg-white border border-beige-100"
+                ? "text-black bg-white"
+                : `bg-neutral-400 border border-beige-100 text-gray-700
+                hover:text-gray-600 hover:bg-gray-50 
+                dark:hover:bg-black dark:hover:text-gray-300`
             }`}
           >
             {tab.label}

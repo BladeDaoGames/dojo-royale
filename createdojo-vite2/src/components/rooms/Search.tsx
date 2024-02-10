@@ -32,8 +32,9 @@ class Search extends React.Component<SearchProps, SearchState> {
         {/* <BiSearchAlt className="mx-1 h-full search-icon"/> */}
         <input
           type="text"
-          placeholder={`\uD83D\uDD0D Search Room By Owner or Room Number`}
+          placeholder={`\uD83D\uDD0D  Search Room By Owner Or Room ID`}
           className="
+          pl-3
           w-full search-input 
           bg-white/80
           placeholder:text-gray-500

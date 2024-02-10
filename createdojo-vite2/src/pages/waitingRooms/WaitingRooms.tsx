@@ -9,9 +9,9 @@ const WaitingRoom = () => {
     // Logic to handle search action, e.g., filtering rooms
   };
   const tabs = [
-    { label: "All", disabled: false },
-    { label: "Waiting", disabled: false },
-    { label: "On-going", disabled: false },
+    { label: "Available", disabled: false },
+    { label: "Playing", disabled: false },
+    { label: "ALL", disabled: false },
   ];
 
   return (
@@ -29,21 +29,22 @@ const WaitingRoom = () => {
         <Navbar onBackClick={goToHome} getHomePage={false} />
 
         <div className="my-2 mx-4 flex-grow
-        border-red-500 border
         flex justify-start gap-4
         p-2 px-4
         ">
-          <div className="w-1/3">
+          <div className="w-1/3 py-3">
             <InventoryPanel />
           </div>
 
-          <div className="w-full border border-orange-500
+          <div className="w-full
           flex flex-col p-4
           ">
 
                 <div className="flex items-center">
                   <Search onSearch={handleSearch} />
-                  <TabInterface tabs={tabs} initialActiveTab="All" />
+                  <div className="ml-2">
+                    <TabInterface tabs={tabs} initialActiveTab="Available" />
+                  </div>
                 </div>
 
                 <div className="h-full border border-green-500">

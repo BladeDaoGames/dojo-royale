@@ -4,8 +4,8 @@ import { BsExclamationCircleFill } from "react-icons/bs";
 export const InventoryPanel = () => {
     return (
         <div className="
-        bg-gray-400 
-        border-4 rounded-3xl border-gray-600
+        bg-neutral-400
+        border-4 rounded-3xl border-gray-500
         h-full flex flex-col 
         justify-center items-center
         text-gray-600

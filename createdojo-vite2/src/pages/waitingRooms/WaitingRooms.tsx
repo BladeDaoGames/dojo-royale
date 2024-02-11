@@ -1,7 +1,7 @@
 import { Navbar, Search, TabInterface } from "../../components";
 import useCustomNavigation from "../../hooks/useCustomNavigation";
-import { InventoryPanel } from "@/components/WaitingRoom";
-import { RoomCard } from "@/components/WaitingRoom";
+import { InventoryPanel, RoomCard, 
+  CreateRoomButton, QuickJoinButton } from "@/components/WaitingRoom";
 
 const WaitingRoom = () => {
   const { goToHome } = useCustomNavigation();
@@ -42,6 +42,7 @@ const WaitingRoom = () => {
           {/* room list */}
           <div className="w-full
           flex flex-col p-4
+          border border-orange-500
           ">
 
                 <div className="flex items-center">
@@ -77,6 +78,10 @@ const WaitingRoom = () => {
 
                 </div>
 
+                <div className="flex gap-3 ml-auto px-4">
+                  <CreateRoomButton />
+                  <QuickJoinButton />
+                </div>
               
           </div>
 

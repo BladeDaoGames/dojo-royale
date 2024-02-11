@@ -1,10 +1,17 @@
 import { Navbar, Search, TabInterface } from "../../components";
 import useCustomNavigation from "../../hooks/useCustomNavigation";
 import { InventoryPanel, RoomCard, 
-  CreateRoomButton, QuickJoinButton } from "@/components/WaitingRoom";
+  CreateRoomButton, QuickJoinButton,
+  CreateRoomModal
+} from "@/components/WaitingRoom";
+import { useState } from "react";
 
 const WaitingRoom = () => {
   const { goToHome } = useCustomNavigation();
+
+  const [createRoomModalStatus, setOpenCreateRoomModal] = useState(false);
+
+  const onOpenCreateRoomModal = () => setOpenCreateRoomModal(true);
 
   const handleSearch = (searchQuery: string) => {
     // Logic to handle search action, e.g., filtering rooms
@@ -26,6 +33,8 @@ const WaitingRoom = () => {
           backgroundSize: "cover"}}
         >
         {/* <div className="absolute inset-0 bg-black opacity-50 z-10" /> */}
+
+        <CreateRoomModal show={createRoomModalStatus} onClose={()=>setOpenCreateRoomModal(false)}/>
         <Navbar onBackClick={goToHome} getHomePage={false} />
 
         <div className="my-2 mx-4
@@ -79,13 +88,13 @@ const WaitingRoom = () => {
                 </div>
 
                 <div className="flex gap-3 ml-auto px-4">
-                  <CreateRoomButton />
+                  <CreateRoomButton onClick={onOpenCreateRoomModal} />
                   <QuickJoinButton />
                 </div>
-              
           </div>
 
         </div>
+          
       </div>
   );
 };

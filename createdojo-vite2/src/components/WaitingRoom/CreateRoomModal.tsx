@@ -98,7 +98,9 @@ export const CreateRoomModal = ({show, onClose}:
                         bg-blue-200
                         hover:bg-blue-600
                         hover:text-white
-                        ">Cancel</button>
+                        "
+                        onClick={onClose}
+                        >Cancel</button>
                     </div>
                 </FlowBiteModal.Body>
             </FlowBiteModal>

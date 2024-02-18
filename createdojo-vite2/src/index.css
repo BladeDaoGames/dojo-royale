@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .gradient-border-bottom:after {
+        @apply absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-gray-400 to-transparent;
+        content: '';
+        width: 75%; /* Adjust this value as needed */
+    }
+}
+
 canvas {
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-optimize-contrast;

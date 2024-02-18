@@ -51,7 +51,6 @@ const WaitingRoom = () => {
           {/* room list */}
           <div className="w-full
           flex flex-col p-4
-          border border-orange-500
           ">
 
                 <div className="flex items-center">

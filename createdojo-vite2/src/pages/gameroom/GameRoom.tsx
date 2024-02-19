@@ -121,7 +121,7 @@ export const GameRoom = () => {
                     }}
                     >
                         <div id="phaser-div" 
-                        className="border border-orange-300 rounded-md
+                        className="rounded-md
                         overflow-hidden
                         h-[576px] aspect-square
                         " />

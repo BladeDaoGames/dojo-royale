@@ -32,7 +32,7 @@ export class Scene1 extends Phaser.Scene {
         const blankDuneTilemap = this.make.tilemap({ key: "blank-dune-map" });
         blankDuneTilemap.addTilesetImage("blacktile", "blackblanktile");
         const layer = blankDuneTilemap.createLayer(0, "blacktile", 0, 0);
-        layer.scale = 0.2
+        layer.scale = 0.185
 
         const playerSprite = this.add.sprite(0, 0, "player");
         // this.cameras.main.startFollow(playerSprite, true);
@@ -47,7 +47,7 @@ export class Scene1 extends Phaser.Scene {
                     id: "player",
                     sprite: playerSprite,
                     walkingAnimationMapping: 6,
-                    startPosition: { x: 8, y: 8 },
+                    startPosition: { x: 0, y: 8 },
                 },
             ],
         };

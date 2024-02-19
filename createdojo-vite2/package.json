@@ -28,6 +28,7 @@
     "framer-motion": "^11.0.3",
     "graphql": "^16.7.1",
     "graphql-request": "^6.1.0",
+    "grid-engine": "^2.44.0",
     "mobx": "^6.9.0",
     "phaser": "^3.70.0",
     "proxy-deep": "^3.1.1",

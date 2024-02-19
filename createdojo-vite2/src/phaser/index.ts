@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 export * from './usePhaserGame';
 import { Scene1 } from './Scene1';
+import {GridEngine} from 'grid-engine';
 
 export const gameConfig = {
     type: Phaser.AUTO,
@@ -24,6 +25,15 @@ export const gameConfig = {
     physics:{
         default: 'arcade',
         arcade:{ gravity: { y: 0 } }
+    },
+    plugins: {
+        scene: [
+            {
+                key: "gridEngine",
+                plugin: GridEngine,
+                mapping: "gridEngine",
+            },
+        ],
     },
     scene: [Scene1]
 }

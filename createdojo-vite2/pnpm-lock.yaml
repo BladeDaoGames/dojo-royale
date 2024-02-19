@@ -56,6 +56,9 @@ dependencies:
   mobx:
     specifier: ^6.9.0
     version: 6.9.0
+  phaser:
+    specifier: ^3.70.0
+    version: 3.70.0
   proxy-deep:
     specifier: ^3.1.1
     version: 3.1.1
@@ -4715,6 +4718,10 @@ packages:
       - utf-8-validate
     dev: false
 
+  /eventemitter3@5.0.1:
+    resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
+    dev: false
+
   /execa@7.2.0:
     resolution: {integrity: sha512-UduyVP7TLB5IcAQl+OzLyLcS/l32W/GLg+AhHJ+ow40FOk2U3SAllPwR44v4vmdFwIWqpdwxxpQbF1n5ta9seA==}
     engines: {node: ^14.18.0 || ^16.14.0 || >=18.0.0}
@@ -7402,6 +7409,12 @@ packages:
       '@types/estree': 1.0.5
       estree-walker: 3.0.3
       is-reference: 3.0.2
+    dev: false
+
+  /phaser@3.70.0:
+    resolution: {integrity: sha512-2g+gh+Jp9f/Ho9FOXOYbIJMGf3UZXyMbW2iLScFaLQw11e/LqVyxj/YmaBauWbHabeTnZjiWkPklDnxhesMH0g==}
+    dependencies:
+      eventemitter3: 5.0.1
     dev: false
 
   /picocolors@1.0.0:

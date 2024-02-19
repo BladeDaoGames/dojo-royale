@@ -5,9 +5,12 @@ import { IoMdExit } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { ROUTES } from '@/constants/routing/routePath';
 import { PlayerInfo } from '@/components/GameRoom';
+import { gameConfig, usePhaserGame } from '@/phaser';
 
 export const GameRoom = () => {
     const { goToHome } = useCustomNavigation();
+
+    const game = usePhaserGame(gameConfig)
 
     return (
         <div className="relative min-h-screen 
@@ -25,8 +28,8 @@ export const GameRoom = () => {
             {/* content */}
             <div className="my-2 mx-4
             flex justify-start gap-4
-            px-4
-            h-[88vh] border border-orange-600
+            px-10
+            h-[88vh]
             ">
 
                 {/* left chat bar */}
@@ -35,16 +38,17 @@ export const GameRoom = () => {
                 flex-col justify-start items-start
                 ">
                     <div className="
-                    text-white font-semibold text-2xl
                     rounded-md
-                    py-2 w-1/5
+                    py-2 w-48
                     hover:bg-gray-400/50
                     hover:cursor-pointer
                     hover:border
                     hover:border-white
                     ">  
                         <Link to={ROUTES.waiting} 
-                        className="flex justify-start items-center"
+                        className="flex justify-start items-center
+                        text-white font-semibold text-2xl
+                        "
                         >
                             <IoMdExit className="mx-2" />
                             <span>Quit</span>
@@ -99,22 +103,34 @@ export const GameRoom = () => {
                     </div>
 
                 </div>
-
-                <div className="w-3/5 border h-full
+                
+                {/* mid game */}
+                <div className="h-full flex-grow
                 flex flex-col justify-start items-center
                 ">
 
                     {/* Map Canvas */}
-                    <div className="border rounded-lg border-orange-500
-                    h-[600px] aspect-square
-                    ">
-                        
+                    <div className="rounded-lg
+                    h-[710px] aspect-square overflow-hidden
+                    flex justify-center items-start
+                    pt-8
+                    "
+                    style={{
+                        backgroundImage:`url(/phaser/maps/dunes.png)`,
+                        backgroundSize: "100%",
+                    }}
+                    >
+                        <div id="phaser-div" 
+                        className="border border-orange-300 rounded-md
+                        overflow-hidden
+                        h-[576px] aspect-square
+                        " />
                     </div>
 
                 </div>
                 
                 {/* right balancer */}
-                {/* <div className=""></div> */}
+                <div className="w-1/5"></div>
 
             </div>
 

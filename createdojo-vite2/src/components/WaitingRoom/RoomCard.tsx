@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaEthereum } from "react-icons/fa";
 import { PiUserFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
+import { ROUTES } from '@/constants/routing/routePath';
 
 export const RoomCard = ({
     roomId, mapName, creatorName, stakeValue, playerCount, maxPlayers, roomstatus, 
@@ -58,15 +60,30 @@ export const RoomCard = ({
 
                     <div className="flex-grow flex items-center justify-between">
                     <span>{creatorName}</span>
-                    <button className={`px-2 py-1 w-32
-                    border border-gray-600 rounded-lg
-                    text-black
-                    ${roomstatus=="Join"?"bg-regular-orange"
-                    : "bg-dark-gray-200"
-                    }
-                    `}>
-                        {roomstatus}
-                    </button>
+
+
+                    <Link className={`px-2 py-1 w-32
+                        border border-gray-600 rounded-lg
+                        text-black
+                        hover:text-white
+                        hover:font-semibold
+                        hover:border-white hover:border-2
+
+                        ${roomstatus=="Join"?`bg-regular-orange`
+                        : `bg-dark-gray-200 text-gray-700`
+                        }
+                        `} 
+
+                        to={`${ROUTES.inGame}/${roomId}`}
+                    >
+                        <div 
+                        className="flex justify-center items-center"
+                        >
+                            {roomstatus}
+                        </div>
+                    </Link>
+
+
                     </div>
 
                 </div>

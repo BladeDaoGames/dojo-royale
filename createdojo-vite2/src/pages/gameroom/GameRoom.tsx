@@ -2,6 +2,8 @@ import React from 'react';
 import useCustomNavigation from "../../hooks/useCustomNavigation";
 import { Navbar, Search, TabInterface } from "../../components";
 import { IoMdExit } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { ROUTES } from '@/constants/routing/routePath';
 
 export const GameRoom = () => {
     const { goToHome } = useCustomNavigation();
@@ -12,7 +14,7 @@ export const GameRoom = () => {
             bg-black/50
                 "
                 style={{
-                backgroundImage: "url(images/Background.png)",
+                backgroundImage: "url(/images/Background.png)",
                 backgroundBlendMode: "multiply",
                 backgroundSize: "cover"}}
                 >
@@ -30,7 +32,7 @@ export const GameRoom = () => {
                 <div className="w-1/3 py-3
                 flex-col justify-start items-center
                 ">
-                    <div className="flex justify-start items-center
+                    <div className="
                     text-white font-semibold text-2xl
                     rounded-md
                     py-2 w-1/5
@@ -38,9 +40,13 @@ export const GameRoom = () => {
                     hover:cursor-pointer
                     hover:border
                     hover:border-white
-                    ">
-                        <IoMdExit className="mx-2" />
-                        <span>Quit</span>
+                    ">  
+                        <Link to={ROUTES.waiting} 
+                        className="flex justify-start items-center"
+                        >
+                            <IoMdExit className="mx-2" />
+                            <span>Quit</span>
+                        </Link>
                     </div>
 
                     {/* stake and player ready status info */}

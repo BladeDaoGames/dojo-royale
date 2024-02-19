@@ -60,7 +60,7 @@ const Navbar: React.FC<NavbarProps> = ({ onBackClick, getHomePage }) => {
                 <div 
                 className="aspect-square h-16"
                 style={{
-                  backgroundImage: `url(./characters/profile/gunner_pfp.png)`,
+                  backgroundImage: `url(/characters/profile/gunner_pfp.png)`,
                   backgroundSize: "200%",
                   backgroundPosition: "center center"
                 }} 

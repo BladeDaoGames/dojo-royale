@@ -16,7 +16,7 @@ function App() {
                 {/* <Route path='/' element={<Home/>}/> */}
                 <Route path={ROUTES.home} element={<Home />} />
                 <Route path={ROUTES.waiting} element={<WaitingRoom />} />
-                <Route path={ROUTES.inGame} element={<GameRoom />}/>
+                <Route path={`${ROUTES.inGame}/:id`} element={<GameRoom />}/>
                 <Route path="/dojomaintest" element={<BaseDojoTest/>}/>
                 <Route path="/accountstest" element={<AccountsTest/>}/>
                 <Route path="/mocklobby" element={<MockLobby/>}/>
